@@ -1,4 +1,5 @@
 <h3><?= htmlspecialchars($article['title']) ?></h3>
+<p class="text-muted">Created by: <?= htmlspecialchars($article['username'] ?? 'Unknown') ?></p>
 
 <?php if (!empty($article['image'])): ?>
   <p>Category: <?= htmlspecialchars($article['category_name']) ?></p>

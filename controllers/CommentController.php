@@ -8,7 +8,6 @@ class CommentController extends Controller {
         $this->comment = new Comment();
     }
 
-    // الطريقة القديمة (Redirect)
     public function store() {
         if (empty($_SESSION['user_id'])) $this->redirect("index.php?action=login");
         $article_id = (int)($_POST['article_id'] ?? 0);

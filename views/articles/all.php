@@ -18,7 +18,7 @@
                     <?php endif; ?>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"><?= htmlspecialchars($row['title']) ?></h5>
-                        <p class="card-text"><?= substr(strip_tags($row['content']), 0, 100) ?>...</p>
+                        <p class="card-text"><?= ($row['content'])?>...</p>
                         <p>Category: <?= htmlspecialchars($row['category_name']) ?></p>
                         <p>Status: <?= $row['is_active'] == 1 ? 'Active' : 'Inactive' ?></p>
                         <a href="index.php?action=articles.show&id=<?= $row['id'] ?>"

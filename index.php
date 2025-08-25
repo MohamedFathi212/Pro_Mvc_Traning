@@ -3,21 +3,17 @@ require_once __DIR__ . "/controllers/UserController.php";
 require_once __DIR__ . "/controllers/ArticleController.php";
 require_once __DIR__ . "/controllers/CommentController.php";
 
-// action من URL
 $action = $_GET['action'] ?? 'articles.index';
 
 // Start Session
 session_start();
 
-// الصفحات العامة (بدون login)
 $public = ['login', 'doLogin', 'register', 'doRegister', 'articles.index', 'articles.show'];
 
-// إذا الزائر مش مسجل دخول حاول يدخل صفحة غير مصرح بها
 if (empty($_SESSION['user_id']) && !in_array($action, $public)) {
     $action = 'login';
 }
 
-// Switch لكل الـ Actions
 switch ($action) {
 
     // Users

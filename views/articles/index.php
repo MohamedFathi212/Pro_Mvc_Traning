@@ -15,6 +15,7 @@
         <div class="card-body">
           <h5 class="card-title"><?= htmlspecialchars($row['title']) ?></h5>
           <p class="text-muted mb-1">Category: <?= htmlspecialchars($row['category_name'] ?? '—') ?></p>
+          <p class="text-muted mb-1">Published by: <?= htmlspecialchars($row['username'] ?? 'Unknown') ?></p>
           <p class="card-text"><?= substr(strip_tags($row['content']), 0, 100) ?>...</p>
           <a class="btn btn-sm btn-outline-secondary" href="index.php?action=articles.show&id=<?= $row['id'] ?>">Read</a>
           <?php if (!empty($_SESSION['user_id']) && $_SESSION['user_id'] == $row['user_id']): ?>
