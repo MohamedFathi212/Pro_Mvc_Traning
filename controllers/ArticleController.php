@@ -26,11 +26,11 @@ class ArticleController extends Controller
             $articles = $this->article->getAllArticles(); 
 
         }
-        $this->view("articles/index", ['articles' => $articles]);
+        $this->view("articles/index", data: ['articles' => $articles]);
     }
     public function all() {
         $articles = $this->article->getAll();
-        $this->view("articles/all", ['articles' => $articles]);
+        $this->view("articles/all", data: ['articles' => $articles]);
     }
 
 
@@ -94,9 +94,16 @@ class ArticleController extends Controller
     {
         $this->mustLogin();
         $id = (int)($_GET['id'] ?? 0);
+        $article = $this->article->getById($id);
+    if ($article) {
+        if (!empty($article['image']) && file_exists("uploads/" . $article['image'])) {
+            unlink("uploads/" . $article['image']); 
+        }
         $this->article->deleteArticle($id);
-        $this->redirect("index.php?action=articles.index");
     }
+    $this->redirect("index.php?action=articles.index");
+    }
+
 
     public function show()
     {
@@ -107,3 +114,4 @@ class ArticleController extends Controller
         $this->view("articles/show", ['article' => $article, 'comments' => $comments]);
     }
 }
+

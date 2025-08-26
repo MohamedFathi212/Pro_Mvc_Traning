@@ -74,6 +74,16 @@ class Article extends Controller
         return $stmt->execute();
     }
 
+
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM articles WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+
     public function deleteArticle($id)
     {
         $stmt = $this->db->prepare("DELETE FROM articles WHERE id=?");

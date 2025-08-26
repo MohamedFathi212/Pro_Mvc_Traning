@@ -33,6 +33,7 @@ switch ($action) {
         (new UserController())->logout();
         break;
 
+        
     // Articles
     case 'articles.index':
         (new ArticleController())->index();

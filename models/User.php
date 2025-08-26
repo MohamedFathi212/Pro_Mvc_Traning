@@ -12,7 +12,7 @@ class User {
         $username = $this->db->real_escape_string($username);
         $email = $this->db->real_escape_string($email);
 
-        $result = $this->db->query("SELECT id FROM users WHERE email='$email' LIMIT 1");
+        $result = $this->db->query("SELECT id FROM users WHERE email='$email' ");
         if ($result->num_rows > 0) {
             return "Email already exists";
         }
@@ -27,7 +27,7 @@ class User {
     public function login($email, $password) {
         $email = $this->db->real_escape_string($email);
 
-        $result = $this->db->query("SELECT * FROM users WHERE email='$email' LIMIT 1");
+        $result = $this->db->query("SELECT * FROM users WHERE email='$email'");
         $user = $result->fetch_assoc();
 
         if ($user && password_verify($password, $user['password'])) {
